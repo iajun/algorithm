@@ -16,9 +16,10 @@ import {
   BinarySearchTreeNode,
 } from '../../dataStructure/binarySearchTree';
 import { findOrderedItem } from './findOrderedItem';
+import { IndexHeap } from '../../dataStructure/indexHeap';
 
 // const arr = generateNearlyOrderedArray(1000000, 1);
-const arr = generateRandomArray(10000000, 0, 2000000);
+const arr = generateRandomArray(10000, 0, 2000);
 const arr2 = [...arr];
 
 // isSorted(timeHelper(bubbleSort)([...arr]));
@@ -27,8 +28,7 @@ const arr2 = [...arr];
 // isSorted(timeHelper(insertSortInIndex)([...arr], 0, arr.length - 1));
 // isSorted(timeHelper(mergeSort)([...arr]));
 // isSorted(timeHelper(mergeSortBU)([...arr]));
-isSorted(timeHelper(quickSort2)(arr));
+// isSorted(timeHelper(quickSort2)(arr));
 // isSorted(timeHelper(quickSort3)([...arr]));
 // isSorted(timeHelper(heapSort)([...arr]));
 // isSorted(timeHelper(testSort)([...arr]));
-timeHelper(findOrderedItem)(arr2, 100);

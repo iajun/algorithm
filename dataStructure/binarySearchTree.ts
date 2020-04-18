@@ -116,12 +116,9 @@ export class BinarySearchTree<K, V> {
     if (!node) {
       return null;
     }
-    console.log(node.subNodeCount, order);
 
     if (node.subNodeCount === order) return node.left;
     if (node.subNodeCount > order) {
-      node.subNodeCount < 5 && console.log(node);
-
       if (!node.left) return null;
       if (node.left.subNodeCount < order) {
         return this.__searchItemAtOrder(node.right, node.subNodeCount - order);
