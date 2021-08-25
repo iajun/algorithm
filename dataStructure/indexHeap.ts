@@ -51,7 +51,7 @@ export class IndexHeap<T> {
 
   constructor(arr?: T[]) {
     arr = arr ? arr : [];
-    this.idx = [null];
+    this.idx = [null] as any;
     this.data = arr;
     this.count = arr.length;
 

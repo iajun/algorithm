@@ -22,7 +22,7 @@ export function findOrderedItem(arr: number[], order: number) {
  * @param r  [l, r]
  * @param order  the specific order in the array
  */
-function __find(arr: number[], l: number, r: number, order: number) {
+function __find(arr: number[], l: number, r: number, order: number): number {
   const k = __partition(arr, l, r);
 
   if (k > order) {

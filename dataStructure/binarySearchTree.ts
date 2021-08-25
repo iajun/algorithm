@@ -16,8 +16,8 @@ enum Order {
 export class BinarySearchTreeNode<K, V> {
   public key: K;
   public value: V;
-  public left: BinarySearchTreeNode<K, V>;
-  public right: BinarySearchTreeNode<K, V>;
+  public left: BinarySearchTreeNode<K, V> | null;
+  public right: BinarySearchTreeNode<K, V> | null;
   public count: number;
   public subNodeCount: number;
 
@@ -31,10 +31,14 @@ export class BinarySearchTreeNode<K, V> {
 }
 
 export class BinarySearchTree<K, V> {
-  private root: BinarySearchTreeNode<K, V>;
+  private root: BinarySearchTreeNode<K, V> | null;
   private count: number;
 
-  private __insertAtNode(node: BinarySearchTreeNode<K, V>, key: K, value: V) {
+  private __insertAtNode(
+    node: BinarySearchTreeNode<K, V> | null,
+    key: K,
+    value: V
+  ) {
     if (!node) {
       return new BinarySearchTreeNode(key, value);
     }
@@ -53,7 +57,7 @@ export class BinarySearchTree<K, V> {
     return node;
   }
 
-  private __contain(node: BinarySearchTreeNode<K, V>, key: K) {
+  private __contain(node: BinarySearchTreeNode<K, V> | null, key: K): boolean {
     if (!node) {
       return false;
     }
@@ -66,7 +70,7 @@ export class BinarySearchTree<K, V> {
     }
   }
 
-  private __search(node: BinarySearchTreeNode<K, V>, key: K) {
+  private __search(node: BinarySearchTreeNode<K, V> | null, key: K): V | null {
     if (!node) {
       return null;
     }
@@ -80,7 +84,7 @@ export class BinarySearchTree<K, V> {
   }
 
   private __traversePreOrder(
-    node: BinarySearchTreeNode<K, V>,
+    node: BinarySearchTreeNode<K, V> | null,
     cb: (value: V, key: K, count: number) => any
   ) {
     if (node === null) return;
@@ -91,7 +95,7 @@ export class BinarySearchTree<K, V> {
   }
 
   private __traverseInOrder(
-    node: BinarySearchTreeNode<K, V>,
+    node: BinarySearchTreeNode<K, V> | null,
     cb: (value: V, key: K, count: number) => any
   ) {
     if (node === null) return;
@@ -102,7 +106,7 @@ export class BinarySearchTree<K, V> {
   }
 
   private __traversePostOrder(
-    node: BinarySearchTreeNode<K, V>,
+    node: BinarySearchTreeNode<K, V> | null,
     cb: (value: V, key: K, count: number) => any
   ) {
     if (node === null) return;
@@ -112,7 +116,10 @@ export class BinarySearchTree<K, V> {
     cb(node.value, node.key, node.count);
   }
 
-  private __searchItemAtOrder(node: BinarySearchTreeNode<K, V>, order: number) {
+  private __searchItemAtOrder(
+    node: BinarySearchTreeNode<K, V> | null,
+    order: number
+  ): BinarySearchTreeNode<K, V> | null {
     if (!node) {
       return null;
     }
@@ -128,6 +135,7 @@ export class BinarySearchTree<K, V> {
     if (node.subNodeCount > order) {
       return this.__searchItemAtOrder(node.left, order);
     }
+    return null;
   }
 
   constructor() {
@@ -148,8 +156,9 @@ export class BinarySearchTree<K, V> {
     this.count++;
   }
 
-  maximun(): V {
+  maximun(): V | undefined {
     let node = this.root;
+    if (!node) return;
     while (node.right !== null) {
       node = node.right;
     }
@@ -157,8 +166,9 @@ export class BinarySearchTree<K, V> {
     return node.value;
   }
 
-  minimun(): V {
+  minimun(): V | undefined {
     let node = this.root;
+    if (!node) return;
     while (node.left !== null) {
       node = node.left;
     }
@@ -170,7 +180,7 @@ export class BinarySearchTree<K, V> {
     return this.__contain(this.root, key);
   }
 
-  search(key: K): V {
+  search(key: K): V | null {
     return this.__search(this.root, key);
   }
 

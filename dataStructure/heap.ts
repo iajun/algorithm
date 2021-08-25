@@ -7,7 +7,7 @@ export class Heap<T> {
   private size: number;
 
   constructor(arr?: T[]) {
-    this.data = arr ? [null, ...arr] : [null];
+    this.data = arr ? [null, ...arr] : ([null] as any);
     this.size = this.data.length - 1;
 
     let i = (this.size / 2) | 0;

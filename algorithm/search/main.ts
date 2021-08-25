@@ -1,6 +1,6 @@
-import { generateRandomArray } from '../../util/generateArray';
-import { mergeSort } from '../sort/mergeSort';
-import { binarySearch, binarySearchRange } from './binarySearch';
+import { generateRandomArray } from "../../util/generateArray";
+import { mergeSort } from "../sort/mergeSort";
+import { binarySearchRange } from "./binarySearch";
 
 let arr = generateRandomArray(100, 0, 20);
 mergeSort(arr);

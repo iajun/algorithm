@@ -1,8 +1,8 @@
 class LinkNode<T> {
-  public val: T;
-  public next: LinkNode<T>;
+  public val: T | null;
+  public next: LinkNode<T> | null;
 
-  constructor(val: T) {
+  constructor(val: T | null) {
     this.val = val;
     this.next = null;
   }
@@ -17,13 +17,13 @@ class MyLinkedListWithPresuo<T> {
     this.size = 0;
   }
 
-  get(idx: number): T | number {
-    if (idx < 0 || idx >= this.size) return -1;
-    let node = this.head;
+  get(idx: number): T | null {
+    if (idx < 0 || idx >= this.size) return null;
+    let node: LinkNode<T> | null = this.head;
     for (let i = 0; i < idx + 1; i++) {
-      node = node.next;
+      node = node!.next;
     }
-    return node ? node.val : -1;
+    return node ? node.val : null;
   }
 
   addAtHead(val: T) {
@@ -37,9 +37,9 @@ class MyLinkedListWithPresuo<T> {
   addAtIndex(idx: number, val: T) {
     if (idx > this.size || idx < 0) return;
     if (this.size === 0) return void this.addAtHead(val);
-    let node = this.head;
+    let node: LinkNode<T> | null = this.head;
     for (let j = 0; j < idx; j++) {
-      node = node.next;
+      node = node!.next!;
     }
     const newNode = new LinkNode(val);
     newNode.next = node.next;
@@ -52,9 +52,9 @@ class MyLinkedListWithPresuo<T> {
 
     let node = this.head;
     for (let j = 0; j < idx; j++) {
-      node = node.next;
+      node = node.next!;
     }
-    node.next = node.next.next;
+    node.next = node.next!.next;
     this.size--;
   }
 }
@@ -70,11 +70,12 @@ class DoubleLinkedList<T> {
   }
 
   addAtIndex(idx: number, val: T) {
+    if (idx > this.size || idx < 0) return;
     const newNode = new LinkNode(val);
 
-    let node = this.head;
+    let node: LinkNode<T> | null = this.head;
     for (let i = 0; i < idx; i++) {
-      node = node.next;
+      node = node!.next;
     }
 
     newNode.next = node;
@@ -99,9 +100,9 @@ class DoubleLinkedList<T> {
 
     let node = this.head;
     for (let i = 0; i < idx - 1; i++) {
-      node = node.next;
+      node = node.next!;
     }
-    node.next = node.next.next;
+    node.next = node.next!.next;
     if (idx === this.size - 1) {
       this.tail = node;
     }

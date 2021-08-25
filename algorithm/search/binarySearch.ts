@@ -11,7 +11,7 @@ export function binarySearch(arr: number[], item: number) {
  * @param r the right range
  * @param item the searching item
  */
-function __search(arr: number[], l: number, r: number, item: number) {
+function __search(arr: number[], l: number, r: number, item: number): number {
   if (l > r) return -1;
   if (l === r && arr[l] !== item) return -1;
 
@@ -33,7 +33,7 @@ function __search(arr: number[], l: number, r: number, item: number) {
 export function binarySearchRange(arr: number[], item: number) {
   let i = __search(arr, 0, arr.length - 1, item);
 
-  if (!~i) return -1;
+  if (!~i) return null;
   let j = i;
   while (i-- && arr[i] === item);
   while (j++ && arr[j] === item);
