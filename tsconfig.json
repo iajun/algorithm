@@ -2,7 +2,6 @@
   "compilerOptions": {
     "noEmit": true,
     "baseUrl": ".",
-    "strict": true,
     "esModuleInterop": true,
     "lib": ["DOM", "ESNext"],
     "paths": {
